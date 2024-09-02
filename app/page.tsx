@@ -180,7 +180,8 @@ export default function Chat() {
 
           <div
             hidden={secondMessage === ""}
-            className="bg-opacity-50 bg-gray-700 rounded-lg p-4 mt-4"
+            style={{ backgroundColor: 'rgba(31, 41, 55, 0.5)' }} 
+            className="rounded-lg p-4 mt-4"
           >
             {secondMessage}
           </div>
