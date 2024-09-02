@@ -180,7 +180,7 @@ export default function Chat() {
 
           <div
             hidden={secondMessage === ""}
-            className="bg-opacity-25 bg-gray-700 rounded-lg p-4 mt-4"
+            className="bg-opacity-25 bg-gray-900 rounded-lg p-4 mt-4"
           >
             {secondMessage}
           </div>
