@@ -165,7 +165,7 @@ export default function Chat() {
 
           <div
             hidden={firstMessage === ""}
-            className="bg-opacity-25 bg-gray-700 rounded-lg p-4"
+            className="bg-opacity-25 bg-gray-900 rounded-lg p-4"
           >
             {firstMessage}
           </div>
