@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useChat } from "ai/react";
 
 export default function Chat() {
@@ -32,6 +32,10 @@ export default function Chat() {
     tone: "",
   });
 
+  const [firstMessage, setFirstMessage] = useState("");
+  const [secondMessage, setSecondMessage] = useState("");
+  const [lastAction, setLastAction] = useState("");
+
   const handleChange = ({
     target: { name, value },
   }: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,6 +44,33 @@ export default function Chat() {
       [name]: value,
     });
   };
+
+  const handleFirstButtonClick = async () => {
+    setLastAction("generate");
+    await append({
+      role: "user",
+      content: `Generate a ${state.genre} joke about ${state.topic} in a ${state.tone} tone`,
+    });
+  };
+
+  const handleSecondButtonClick = async () => {
+    setLastAction("rate");
+    await append({
+      role: "user",
+      content: `Rate the previous joke: "${firstMessage}"`,
+    });
+  };
+
+  useEffect(() => {
+    if (messages.length > 0) {
+      const lastMessage = messages[messages.length - 1]?.content;
+      if (lastAction === "generate") {
+        setFirstMessage(lastMessage);
+      } else if (lastAction === "rate") {
+        setSecondMessage(lastMessage);
+      }
+    }
+  }, [messages, lastAction]);
 
   return (
     <main className="mx-auto w-full p-24 flex flex-col">
@@ -127,24 +158,31 @@ export default function Chat() {
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50"
             disabled={isLoading || !state.topic || !state.genre || !state.tone}
-            onClick={() =>
-              append({
-                role: "user",
-                content: `Generate a ${state.genre} joke about ${state.topic} in a ${state.tone} tone`,
-              })
-            }
+            onClick={handleFirstButtonClick}
           >
             Generate Joke
           </button>
 
           <div
-            hidden={
-              messages.length === 0 ||
-              messages[messages.length - 1]?.content.startsWith("Generate")
-            }
+            hidden={firstMessage === ""}
             className="bg-opacity-25 bg-gray-700 rounded-lg p-4"
           >
-            {messages[messages.length - 1]?.content}
+            {firstMessage}
+          </div>
+
+          <button
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50 mt-4"
+            disabled={isLoading || firstMessage === ""}
+            onClick={handleSecondButtonClick}
+          >
+            Evaluate the Joke
+          </button>
+
+          <div
+            hidden={secondMessage === ""}
+            className="bg-opacity-25 bg-gray-700 rounded-lg p-4 mt-4"
+          >
+            {secondMessage}
           </div>
         </div>
       </div>
