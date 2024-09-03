@@ -13,10 +13,10 @@ export default function Chat() {
     { emoji: "📺", value: "Television" },
   ];
   const genres = [
-    { emoji: "🍄", value: "Pun" },
-    { emoji: "🍅", value: "Knock-knock" },
-    { emoji: "🥕", value: "Story" },
-    { emoji: "🌰", value: "Free-style" },
+    { emoji: "", value: "Pun" },
+    { emoji: "", value: "Knock-knock" },
+    { emoji: "", value: "Story" },
+    { emoji: "", value: "Free-style" },
   ];
   const tones = [
     { emoji: "😉", value: "Witty" },
@@ -77,7 +77,7 @@ export default function Chat() {
       <div className="p4 m-4">
         <div className="flex flex-col items-center justify-center space-y-8 text-white">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold">Joke Telling App</h2>
+            <h2 className="text-5xl font-bold text-blue-500">Joke Telling App</h2>
             <p className="text-zinc-500 dark:text-zinc-400">
               Customize the joke by selecting the topic, genre and tone.
             </p>
