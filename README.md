@@ -11,3 +11,7 @@ An app originally created as a storyteller has been changed to an app that tells
 - Added a button to rate generated jokes. - 2024/09/03
 - We are planning to add the function to speak out jokes.
 
+## Setup Instructions 
+- npm install
+- Create a .env.local file and set OPENAI_API_KEY
+- npm run dev
