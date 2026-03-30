@@ -18,7 +18,7 @@ export async function POST(req: Request) {
   }
 
   const response = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
+    model: "gpt-5.4-mini",
     stream: true,
     temperature: 1.3,        // 多様性を出すために少し高めに設定
     presence_penalty: 0.6,   // 話題の重複を避ける設定
